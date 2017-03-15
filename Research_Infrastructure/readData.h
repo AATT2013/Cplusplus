@@ -17,16 +17,24 @@
 #include <fstream>
 #include <sstream>
 #include <set>
+#include <vector>
+#include <map>
 
+//using daily_tick = double[5];
 
 class readData {
 public:
+    
     std::set<std::string> symbols;
+    std::map<std::string, std::vector<std::vector<double>>>data;
+    
     readData();
-    readData(const std::string& path);
+    readData(const std::string& path, const std::string& histDataPath);
     readData(const readData& orig);
-    void download();
+    void loadData(const std::string& histDataPath);
+    std::string trim(const std::string& str);
     virtual ~readData();
+    
 private:
 
 };

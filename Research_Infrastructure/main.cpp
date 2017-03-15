@@ -23,34 +23,24 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    /*
-    ifstream file ( "/home/david/AATT/sp500.csv" ); // declare file stream: http://www.cplusplus.com/reference/iostream/ifstream/
-    string symbol;
-    set<string> symbols;
-    
-    std::string line;
-    while (getline(file, line)) // read whole line into line
+    std::string symbolsFilePath = "/home/david/AATT/russell_3000_2011-06-27.csv";
+    std::string histDataPath = "/home/david/AATT/historical/";
+ 
+    readData read(symbolsFilePath, histDataPath);
+   // for(auto it=read.symbols.begin(); it != read.symbols.end(); it++ )
     {
-        istringstream iss(line); // string stream
-        getline(iss, symbol, ','); // read first part up to comma, ignore the comma
-//        cout<<symbol<<endl;
-        symbols.insert(symbol);
-    }
-     
-    for(auto it=symbols.begin(); it != symbols.end(); it++ )
-    {
-        cout<<*it<<endl;
-    }
-    cout<<"total symbol number: "<<symbols.size()<<endl;
-    
-    */
-    std::string path("/home/david/AATT/sp500.csv");
-    readData read(path);
-    for(auto it=read.symbols.begin(); it != read.symbols.end(); it++ )
-    {
-        cout<<*it<<endl;
+       // cout<<*it<<endl;
     }
     
+    for(int j =0;j<read.data["IBM"].size();j++)
+    {
+        for(int i=0;i<6; i++)
+        {
+            std::cout<<read.data["IBM"][j][i]<<" ";
+        }
+        std::cout<<std::endl;
+    }
+    cout<<"number of files been read "<<read.data.size()<<endl;
     return 0;
 }
 
